@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,19 +37,59 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
+
+
     /**
      * داله مساعده لفتح قائمه تتلقى بارمتر للكائن الذي سبب فتح القائمه
      * @param v
      */
-    public void showPopUpMenu(View v)
-    {
-        PopupMenu popup=new PopupMenu(this,v);
+    public void showPopUpMenu(View v){
+        PopupMenu popup=new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
+            }
+        });
         popup.inflate(R.menu.popup_menu);
         popup.show();
     }
 
     public void onClick(View v){
         showPopUpMenu(v);}
+
+/**
+ دالة مساعدة لفتح قائمة تتلقى *
+ بارمترا للكائن الذي سبب فتح القائمة *
+ * @param v
+ * @param item
+ */
+    public void showPopUpMenu(View v, MyTask item)
+    {
+        // popup menu بناء قائمة
+        PopupMenu popup = new PopupMenu(this, v);//الكائن الذي سبب فتح القائمه v
+       // ملف القائمة
+        popup.inflate(R.menu.popup_menu);
+        //اضافة معالج حدث لاختيار عنصر من القائمة
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenultemClickListener() {
+            @Override
+            public boolean on MenultemClick(Menultem menuItem) {
+                if(menultem.getItemId()==R.id.mnAddTask){
+                   // هنا نكتب رد الفعل لاختيار هذا العنصر من القائمة
+                }
+                Toast.makeText(MainActivity.this, "Add", Toast.LENGTH_SHORT).show(); Intent i=new Intent(MainActivity.this,AddTaskActivity.class); startActivity(i);
+                if(menultem.getItemId()==R.id.mndelete){
+                }
+                Toast.makeText(MainActivity.this, "Delete", Toast.LENGTH_SHORT).show();
+                if(menuItem.getItemId()==R.id.mnEdit) {
+                    Toast.makeText(MainActivity.this, "Edit", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
+        popup.show();//فتح وعرض القائمه
+    }
 
 
 
