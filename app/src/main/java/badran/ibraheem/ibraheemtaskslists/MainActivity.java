@@ -3,12 +3,15 @@ package badran.ibraheem.ibraheemtaskslists;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import badran.ibraheem.ibraheemtaskslists.data.mytasksTable.MyTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v){
-        showPopUpMenu(v);}
+        showPopUpMenu(v);
+    }
 
 /**
  دالة مساعدة لفتح قائمة تتلقى *
@@ -72,17 +76,19 @@ public class MainActivity extends AppCompatActivity {
        // ملف القائمة
         popup.inflate(R.menu.popup_menu);
         //اضافة معالج حدث لاختيار عنصر من القائمة
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenultemClickListener() {
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
-            public boolean on MenultemClick(Menultem menuItem) {
-                if(menultem.getItemId()==R.id.mnAddTask){
-                   // هنا نكتب رد الفعل لاختيار هذا العنصر من القائمة
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                if(menuItem.getItemId()==R.id.itmComplete){
+                   Toast.makeText(MainActivity.this, "Add", Toast.LENGTH_SHORT).show();
+                       Intent i=new Intent(MainActivity.this,AddTaskActivity.class);
+                   startActivity(i);
                 }
-                Toast.makeText(MainActivity.this, "Add", Toast.LENGTH_SHORT).show(); Intent i=new Intent(MainActivity.this,AddTaskActivity.class); startActivity(i);
-                if(menultem.getItemId()==R.id.mndelete){
+                if(menuItem.getItemId()==R.id.itmDelete){
+                     Toast.makeText(MainActivity.this, "Delete", Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(MainActivity.this, "Delete", Toast.LENGTH_SHORT).show();
-                if(menuItem.getItemId()==R.id.mnEdit) {
+                if(menuItem.getItemId()==R.id.itmEdit) {
                     Toast.makeText(MainActivity.this, "Edit", Toast.LENGTH_SHORT).show();
                 }
                 return true;

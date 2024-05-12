@@ -4,4 +4,13 @@
     <item
         android:id="@+id/itmSettings"
         android:title="Settings" />
+    <item
+        android:id="@+id/itmComplete"
+        android:title="Complete" />
+    <item
+        android:id="@+id/itmEdit"
+        android:title="Edit" />
+    <item
+        android:id="@+id/itmDelete"
+        android:title="Delete" />
 </menu>
